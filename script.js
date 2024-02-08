@@ -14,7 +14,7 @@ window.onload = function(){
             let tile= document.createElement("img");
             tile.id= r.toString() + " - " + c.toString();  
             tile.src= imgOrder.shift() + ".png";
-            console.log(tile.src);
+            // console.log(tile.src);
 
         // DRAG and DROP
 
@@ -23,7 +23,7 @@ window.onload = function(){
         tile.addEventListener("dragenter", dragEnter); //drag img onto another one
         tile.addEventListener("dragleave", dragLeave); //dragged image leave 
         tile.addEventListener("drop", dragDrop); // drag over another image and let go
-        tile.addEventListener("dragEnd", dragEnd); //after drag drop, wsap the 2 tiles 
+        tile.addEventListener("dragend", dragEnd); //after drag drop, wsap the 2 tiles 
 
 
         
@@ -33,6 +33,64 @@ window.onload = function(){
         }
 
     }
+}
+
+
+function dragStart(){
+currentTile = this; //the image being dragged; 
+console.log(currentTile);
+
+}
+
+function dragOver(e){
+    e.preventDefault();
+}
+
+function dragEnter(e){
+    e.preventDefault();
+}
+
+function dragLeave(){
+   
+}
+
+function dragDrop(e){
+e.preventDefault();
+   otherTile = this; //the image tile being dropped on
+   console.log(this);
+}
+
+function dragEnd(){
+
+    if(!otherTile.src.includes("9.png")){
+      return;  
+    }
+
+    let currentCoords = currentTile.id.split("-"); //"0- 0" ->  ["0", "0 "]
+    console.log(currentCoords);
+    let r = parseInt(currentCoords[0]);
+    let c= parseInt(currentCoords[1]); 
+
+    let otherCoords = otherTile.id.split("-");
+    let r2 = parseInt(otherCoords[0]);
+    let c2 = parseInt(otherCoords[1]); 
+
+    //check adjiacency 
+
+    let moveLeft = r ==r2 && c2 == c-1 ; 
+    let moveRight = r== r2 && c2 == c+1; 
+    let moveUp = c == c2 && r2 == r-1;
+    let moveDown = c ==c2 && r2 == r+1; 
+
+    let isAdjancent = moveLeft || moveRight || moveUp || moveDown;
+  
+    if(isAdjancent){
+        let currentImg = currentTile.src;
+        let otherImg = otherTile.src; 
+        currentTile.src = otherImg;
+        otherTile.src = currentImg; 
+  }
+
 }
 
 
