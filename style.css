@@ -29,3 +29,8 @@ body{
     height: 118px;
     border: 1px solid aliceblue;
 }
+
+/* Add a red border to the number 9 tile */
+img#2-2 {
+    border: 2px solid red;
+}

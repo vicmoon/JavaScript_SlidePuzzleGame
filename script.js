@@ -14,7 +14,11 @@ window.onload = function(){
             let tile= document.createElement("img");
             tile.id= r.toString() + " - " + c.toString();  
             tile.src= imgOrder.shift() + ".png";
-            // console.log(tile.src);
+            
+              // Add a class to the number 9 tile
+            //   if (tile.id === "2-2") {
+            //     tile.classList.add("number-9-tile");
+            // }
 
         // DRAG and DROP
 
@@ -54,24 +58,25 @@ function dragLeave(){
    
 }
 
-function dragDrop(e){
-e.preventDefault();
-   otherTile = this; //the image tile being dropped on
-   console.log(this);
+function dragDrop(e) {
+    e.preventDefault();
+    otherTile = this; //the image tile being dropped on
+    console.log(this);
 }
 
 function dragEnd(){
 
-    if(!otherTile.src.includes("9.png")){
-      return;  
+    if (!otherTile.src.includes("9.png")) { // 
+        return;
     }
+    
 
-    let currentCoords = currentTile.id.split("-"); //"0- 0" ->  ["0", "0 "]
+    let currentCoords = currentTile.id.split(" - "); //"0- 0" ->  ["0", "0 "]
     console.log(currentCoords);
     let r = parseInt(currentCoords[0]);
     let c= parseInt(currentCoords[1]); 
 
-    let otherCoords = otherTile.id.split("-");
+    let otherCoords = otherTile.id.split(" - ");
     let r2 = parseInt(otherCoords[0]);
     let c2 = parseInt(otherCoords[1]); 
 
@@ -89,6 +94,9 @@ function dragEnd(){
         let otherImg = otherTile.src; 
         currentTile.src = otherImg;
         otherTile.src = currentImg; 
+
+        turns += 1;
+        document.getElementById("turns").innerHTML = turns;
   }
 
 }
