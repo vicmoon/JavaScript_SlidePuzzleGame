@@ -23,14 +23,22 @@ body{
     flex-wrap: wrap;
 }
 
+.number-9-tile{
+ opacity: 1;
+}
 
+.number-9-tile :hover {
+    opacity: 0.2;
+}
+ 
 #board img {
     width: 118px;
     height: 118px;
-    border: 1px solid aliceblue;
+   border: 1px solid white;
+   
+   
+  
 }
 
 /* Add a red border to the number 9 tile */
-img#2-2 {
-    border: 2px solid red;
-}
+

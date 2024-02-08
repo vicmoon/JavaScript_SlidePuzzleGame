@@ -7,18 +7,22 @@ let turns= 0;
 let imgOrder = [ '4', '2', '7', '1', '3', '5', '8', '6', '9'];
 
 window.onload = function(){
+
+
     for(let r =0; r < rows; r++){
         for(let c=0; c < colums; c++){
 
             //img id 0-0, 1-1 src="1.png, 2.png" > 
             let tile= document.createElement("img");
-            tile.id= r.toString() + " - " + c.toString();  
+
+            console.log(tile);
+            tile.id= r.toString() + "-" + c.toString();  
             tile.src= imgOrder.shift() + ".png";
             
               // Add a class to the number 9 tile
-            //   if (tile.id === "2-2") {
-            //     tile.classList.add("number-9-tile");
-            // }
+              if (tile.src.includes("9.png")) {
+                tile.classList.add("number-9-tile");
+            }
 
         // DRAG and DROP
 
@@ -37,6 +41,8 @@ window.onload = function(){
         }
 
     }
+
+    
 }
 
 
@@ -70,13 +76,19 @@ function dragEnd(){
         return;
     }
     
+    // if (otherTile.src.includes("9.png")) {
+    //     otherTile.style.border = "2px solid red";
+    // } else {
+    //     // Remove border from other tiles
+    //     otherTile.style.border = "";
+    // } 
 
-    let currentCoords = currentTile.id.split(" - "); //"0- 0" ->  ["0", "0 "]
+    let currentCoords = currentTile.id.split("-"); //"0- 0" ->  ["0", "0 "]
     console.log(currentCoords);
     let r = parseInt(currentCoords[0]);
     let c= parseInt(currentCoords[1]); 
 
-    let otherCoords = otherTile.id.split(" - ");
+    let otherCoords = otherTile.id.split("-");
     let r2 = parseInt(otherCoords[0]);
     let c2 = parseInt(otherCoords[1]); 
 
@@ -94,7 +106,10 @@ function dragEnd(){
         let otherImg = otherTile.src; 
         currentTile.src = otherImg;
         otherTile.src = currentImg; 
+        
+        // Apply red border to the tile representing number 9
 
+ // Increment turns count
         turns += 1;
         document.getElementById("turns").innerHTML = turns;
   }
