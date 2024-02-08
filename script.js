@@ -4,7 +4,7 @@ let currentTile;
 let otherTile; // blank tile 
 let turns= 0; 
 // let imgOrder = ['1', '2','3','4', '5', '6', '7', '8', '9']; 
-let imgOrder = [ '4', '2', '7', '1', '3', '5', '8', '6', '9'];
+let imgOrder = [ '4', '8', '3', '2', '1', '5', '7', '6', '9'];
 
 window.onload = function(){
 
