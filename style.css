@@ -25,9 +25,9 @@ body{
 }
 
 
-.number_nine:hover {
+/* .number_nine:hover {
     cursor: pointer;
-}
+} */
  
 #board img {
     width: 118px;

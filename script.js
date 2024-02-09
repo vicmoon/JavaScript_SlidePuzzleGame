@@ -20,9 +20,13 @@ window.onload = function(){
             tile.src= imgOrder.shift() + ".png";
             
               // Add a class to the number 9 tile
-              if (tile.src.includes("9.png")) {
+              if (imgOrder.indexOf(tile.src.split('/').pop().split('.')[0]) === 8) {
                 tile.classList.add("number_nine");
             }
+            
+            
+            
+            
 
         // DRAG and DROP
 
@@ -42,7 +46,7 @@ window.onload = function(){
 
     }
 
-    
+   cursor(); 
 }
 
 
@@ -72,7 +76,7 @@ function dragDrop(e) {
 
 function dragEnd(){
 
-    if (!otherTile.src.includes("9.png")) { // 
+    if (!otherTile.src.endsWith("9.png")) { // 
         return;
     }
     
@@ -82,6 +86,8 @@ function dragEnd(){
     //     // Remove border from other tiles
     //     otherTile.style.border = "";
     // } 
+
+
 
     let currentCoords = currentTile.id.split("-"); //"0- 0" ->  ["0", "0 "]
     console.log(currentCoords);
@@ -98,7 +104,6 @@ function dragEnd(){
     let moveRight = r== r2 && c2 == c+1; 
     let moveUp = c == c2 && r2 == r-1;
     let moveDown = c ==c2 && r2 == r+1; 
-
     let isAdjancent = moveLeft || moveRight || moveUp || moveDown;
   
     if(isAdjancent){
@@ -112,8 +117,17 @@ function dragEnd(){
  // Increment turns count
         turns += 1;
         document.getElementById("turns").innerHTML = turns;
+        
   }
 
 }
 
+
+
+function cursor() {
+    var elems = document.getElementsByClassName("number_nine");
+    for (var i=0, len=elems.length; i<len; i++) {
+        elems[i].style.cursor = 'pointer';
+    }
+};
 
