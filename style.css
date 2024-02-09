@@ -24,12 +24,9 @@ body{
     flex-wrap: wrap;
 }
 
-.number-9-tile{
- opacity: 1;
-}
 
-.number-9-tile :hover {
-    opacity: 0.2;
+.number_nine:hover {
+    cursor: pointer;
 }
  
 #board img {

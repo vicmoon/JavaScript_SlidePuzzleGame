@@ -21,7 +21,7 @@ window.onload = function(){
             
               // Add a class to the number 9 tile
               if (tile.src.includes("9.png")) {
-                tile.classList.add("number-9-tile");
+                tile.classList.add("number_nine");
             }
 
         // DRAG and DROP
